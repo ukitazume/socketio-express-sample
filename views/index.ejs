@@ -1,0 +1,29 @@
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+  var socket = io.connect('http://localhost:3030');
+  socket.on('connect', function(data) {
+    document.getElementById("connectId").innerHTML = socket.socket.sessionid;
+  });
+
+  socket.on('message', function(msg) {
+    var element = document.createElement("p");
+    element.innerHTML = msg.who + ":" + msg.content;
+    document.getElementById("receiveMsg").appendChild(element);
+  });
+  socket.on('news', function (data) {
+    document.getElementById("news").innerHTML = data.content;
+  });
+
+  function SendMsg() {
+    var msg = document.getElementById("message").value;
+    socket.send(msg);
+  }
+</script>
+<div id="connectId"></div>
+<div id="news"></div>
+<div id="receiveMsg"></div>
+
+<input type="text" id="message" value="">
+<input type="button" value="メッセージを送る" onclick="SendMsg()">
