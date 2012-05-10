@@ -4,6 +4,5 @@ About
 
 Sample On Heroku
 ===================
-
-http://growing-window-6152.herokuapp.com/
+http://node-express-socketio-sample.herokuapp.com/
 
