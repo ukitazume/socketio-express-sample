@@ -17,7 +17,6 @@ app.configure "development", ->
     showStack: true
   )
 
-
 app.configure "production", ->
   app.use express.errorHandler()
 
