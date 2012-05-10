@@ -2,7 +2,7 @@
 <p>Welcome to <%= title %></p>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
-  var socket = io.connect('http://localhost:80');
+  var socket = io.connect('http://growing-window-6152.herokuapp.com');
   socket.on('connect', function(data) {
     document.getElementById("connectId").innerHTML = socket.socket.sessionid;
   });
