@@ -17,11 +17,17 @@ app.configure "development", ->
     showStack: true
   )
 
+
 app.configure "production", ->
   app.use express.errorHandler()
 
+port = process.env.PORT || 3000
+
 app.get "/", routes.index
 
+
+app.listen port, ->
+  console.log "Express server listening on port %d in %s mode", app.address().port, app.settings.env
 
 sockets = socketIO.listen(app)
 sockets.on 'connection', (socket) ->
@@ -31,5 +37,3 @@ sockets.on 'connection', (socket) ->
     socket.emit 'message', {content: msg, who: 'you'}
     socket.broadcast.emit 'message', {content: msg, who: 'others'}
 
-app.listen 80, ->
-  console.log "Express server listening on port %d in %s mode", app.address().port, app.settings.env
